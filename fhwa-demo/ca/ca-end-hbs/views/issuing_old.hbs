@@ -1,0 +1,147 @@
+{{> component_nav moreNavLinks=navLinks}}
+
+<body>
+    <div id="issuing" class="tab" style="display:block;">
+        <div class="w3-container w3-card w3-padding w3-margin" style="float: left;width: 31%">
+            <h3>Create Schema: </h3>
+            <form id="schemaForm">
+                <label>Name of Schema: </label>
+                <input type="text" class="w3-input" name="schema_name" id="schema_name" value="VehicleKey">
+                <br><br>
+                <label>Schema Version: </label>
+                <input type="text" class="w3-input" name="schema_version" id="schema_version" value="1.0">
+                <br><br>
+                <label>Please supply a JSON array of attributes:</label><br><br>
+                <textarea style="height:220px;" class="w3-input" name="attributes" id="attributes" required>[
+                    "public_key",
+                    "vin"
+                ]</textarea>
+                <br><br>
+                <input type="submit" class="btnSubmit" id="btnSubmit" >
+            </form>
+        </div>
+
+        <div style="float: left;width: 31%">
+            <div class="w3-container w3-card w3-padding w3-margin">
+                <h3>Create Credential Definition</h3>
+                <form method="POST" action="/credential-definitions">
+                    <label>Select a Schema:</label>
+                    <select class="w3-select" name="schema_id" required>
+                        {{#each schemasJsonToVariable}}
+                        <option value="{{this}}"</option>
+                        {{/each}}
+                    </select>
+                    <br><br>
+                    <label>Tag:</label>
+                    <input class="w3-input" type="text" name="tag" value="MyTranscript" required>
+                    <br><br>
+                    <input class="w3-btn w3-white w3-border" type="submit">
+                </form>
+            </div>
+            <div class="w3-container w3-card w3-padding w3-margin">
+                <h3>Send Credential Offer</h3>
+                <form method="POST" action="/api/issuer/send_credential_offer">
+                    <label>Relationship: </label>
+                    <select class="w3-select" name="their_relationship_did" required>
+                        <%for(let relationship of relationships) {%>
+                            <option value="<%=relationship.their_did%>"><%=relationship.metadata.name%></option>
+                        <%}%>
+                    </select>
+                    <br><br>
+                    <label>Select a Credential Definition:</label>
+                    <select class="w3-select" name="cred_def_id" required>
+                        <%for(let credDef of credentialDefinitions) {%>
+                            <option value="<%=credDef.id%>"><%=credDef.tag%></option>
+                        <%}%>
+                    </select>
+                    <br><br>
+                    <input class="w3-btn w3-white w3-border" type="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+
+    const schemaForm = document.getElementById('schemaForm');
+    
+    //turn JSON array in form data into a usable Array for the API POST
+    function handleAttributes(formString,arrayString) {
+        var attributesData = document.getElementById(formString).elements[arrayString].innerHTML;
+        var attributesArray = attributesData.split("[").join("").split("]").join("").split("\n").join("").split(",");
+        handledArray = [];
+        for(let attr of attributesArray){
+            handledArray.push(attr);
+        }
+        return handledArray;
+    }
+
+    schemaForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        //create formData variable
+        const formData = new FormData(this);
+
+        //handle the JSON array of attributes
+        function handleArrayInForm(form,arrayStringName) {
+            var attributesData = form.get(arrayStringName);
+            var attributesArray = attributesData.split("[").join("").split("]").join("").split("\n").join("").split(",");
+            handledArray = [];
+            for(let attr of attributesArray){
+                handledArray.push(attr);
+        }
+        return handledArray;
+    }
+        //attributesArray = formData.get('attributes');
+
+        const schemaBody = {};
+
+        for(var pair of formData.entries()) {
+            if(pair[0] != "attributes") {
+                schemaBody[pair[0]] = pair[1];
+            } 
+            else {
+                schemaBody[pair[0]] = handleArrayInForm(formData,'attributes');
+            }
+        }
+
+        //POST the new schema to the ledger
+        fetch('http://localhost:8021/schemas', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(schemaBody)
+        }).then(function (response) {
+            return response.text();
+        }).then(function (text) {
+            console.log(text);
+        }).catch(function (error) {
+            console.error(error);
+        })
+    });
+
+    
+    //fetch all schemas for schemas list
+    //const getSchemasJson = fetch('http://localhost:8021/schemas/created')
+    //.then((response) => response.json())
+    //.then((schema_ids) => {
+    //    console.log(schema_ids["schema_ids"]);
+    //});
+   
+    async function getSchemas(){
+        return fetch('http://localhost:8021/schemas/created',
+        {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((responseData) => {
+            //console.log(responseData);
+            return responseData;
+        })
+        .catch(error => console.warn(error));
+    }
+
+    </script>
+</body>

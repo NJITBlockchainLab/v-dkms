@@ -1,0 +1,73 @@
+{{> component_nav moreNavLinks=navLinks}}
+
+<!doctype html>
+<html>
+<head>
+<style>
+    h1{
+        font-family: "32px "Lucida Grande", Helvetica, Arial, sans-serif";  
+        font-size: 1rem;
+        color: rgb(68, 67, 67);
+        text-align: center;
+    }
+    textarea {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    div {
+        text-align: center;
+    }
+</style>
+<div class="content">
+    <title>Revocation</title>
+</head>
+    <body>
+        <form id="newCRLForm">
+            <div>
+                <label for="newCRL">Supply Valid JSON with Revoked Credentials (CRED_DEF transaction hash digest and Credential Definition ID):</label>
+                <br></br>
+                <textarea id="newCRL" name="newCRL" rows="20" cols="90">
+{
+  "@context": "https://w3id.org/openbadges/v2",
+  "id": "https://fhwa.org/credentialCAs/issuer1/revocationlist.json",
+  "type": "RevocationList",
+  "issuer": "https://fhwa.org/credentialCAs/issuer1.json",
+  "revokedAssertions":
+  {"2f4a4cc35cdd1c534aeb82be4d03cc70271f2de56b4f1c4e948337665142603d" : {
+      "cred_def_id": "example:CL:default:10",
+      "revocationReason": "Issued in error"
+    }}
+}
+                </textarea>
+                <br><br>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block mb-3" value="Submit">Create CRL</button>
+        </form>
+        </div>
+
+    <script>
+
+    const newCRLForm = document.getElementById('newCRLForm');
+
+    newCRLForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        
+        newCRL = formData.get('newCRL');
+        //console.log(typeof(JSON.parse(newCRL)));
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: newCRL
+        };
+        //console.log(newCRL);
+
+        fetch('/revocation/upload', options);
+    });
+    </script>
+    </body>
+</div>

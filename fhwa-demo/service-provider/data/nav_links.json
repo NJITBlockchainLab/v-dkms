@@ -1,0 +1,10 @@
+[
+    {
+        "label": "Connections",
+        "url": "/connections"
+    },
+    {
+        "label": "Verification",
+        "url": "/proofs"
+    }
+]

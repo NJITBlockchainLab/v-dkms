@@ -1,0 +1,77 @@
+{{> component_nav moreNavLinks=navLinks}}
+
+<div class="content">
+    {{#if proofs}}
+    <div class="card-columns">
+        {{#each proofs}}
+        {{> proof_card proof=this}}
+        {{/each}}
+    </div>
+    {{else}}
+    {{> empty_list }}
+    {{/if}}
+</div>
+
+<!doctype> 
+<html>
+    <body>
+        <h1>Verification: Check CRL</h1>
+        <form id="checkCRLForm">
+            {{!-- <div>
+                <label for="fileName">CRL Name: </label>
+                <input type="text" name="fileName">
+                <br><br>
+                <label for="file">Upload CRL</label>
+                <input type="file" name="newFile">
+                <br></br>
+            </div> --}}
+            <div>
+                <label for="crlHash">CRL Hash: </label>
+                <input type="text" id="crlHash" name="crlHash">
+                <label for="check"></label>
+                <br></br>
+                <textarea id="check" name="check" rows="8" cols="60">
+{
+    "id": "2f4a4cc35cdd1c534aeb82be4d03cc70271f2de56b4f1c4e948337665142603d",
+    "cred_def_id": "example:CL:default:10"
+}
+                </textarea>
+                <br><br>
+            </div>
+            <button class="submit" value="Submit">Check CRL</button>
+        </form>
+    </body>
+    <script>
+    const checkCRLForm = document.getElementById('checkCRLForm');
+
+    checkCRLForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        
+        ipfsHash = formData.get('crlHash');
+        //console.log(ipfsHash);
+        crlCheckParams = formData.get('check');
+        //console.log(typeof(JSON.parse(crlCheckParams)));
+        crlCheck = JSON.parse(crlCheckParams);
+
+        fetch('https://ipfs.io/ipfs/'+ ipfsHash)
+            .then(response => response.json())
+            .then(data => {
+                const revokedAssertions = data["revokedAssertions"];
+
+                //direct search CRL to see if credential is revoked (using credential hash)
+                try
+                {
+                    if(revokedAssertions[crlCheck["id"]] != undefined){
+                        alert("Credential Revoked");
+                    } else {
+                        alert("Credential Valid");
+                    }
+                } catch {
+                    alert("Verification Failed");
+                };
+            });
+    });
+    </script>
+</html>
