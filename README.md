@@ -26,7 +26,7 @@
 
 ### Start Agent and Controller 
 
-In the terminal, run script in the [Agent Provision](!cloudagent_provision.md) to start the agent and controller.
+In the terminal, run script in the [Agent Provision](cloudagent_provision.md) to start the agent and controller.
 
 
 <!-- # Toolbox Vue (Under development)
