@@ -1,0 +1,10 @@
+{
+    "id": "https://fhwa.org/credentialCAs/issuer1/revocationlist.json",
+    "type": "RevocationList",
+    "issuer": "https://fhwa.org/credentialCAs/issuer1.json",
+    "revokedCredentials":
+    [{
+        "credential_id": "7eb9d7f2b716b30de685891edd22e51c9d03767497db763ce4c86c5b21faec81",
+        "revocationReason": "Issued in error"
+    }]
+}

@@ -1,0 +1,71 @@
+<div class="content">
+    {{> nav_card_list navLinks=navLinks }}
+</div>
+
+{{!-- <!doctype html>
+<html>
+<head>
+<style>
+</style>
+    <title>Revocation</title>
+    </head>
+    <body>
+        <p>Upload New CRL</p>
+        <form id="create_crl" action="/upload" method="POST" enctype="multipart/formdata">
+            <div>
+                <label for="crl_name">CRL Name: </label>
+                <input type="text" name="fileName">
+                <br><br>
+                <label>Upload CRL</label>
+                <input type="file" name="file">
+                <br></br>
+            </div>
+            <button class="submit" value="Submit">Submit</button>
+        </form>
+        </div>
+
+        <p>Get Existing CRL</p>
+        <form id="get_existing_crl">
+            <div>
+                <label for="existing_crl_name">CRL Name: </label>
+                <input type="text" id="existing_crl_name" name="existing_crl_name"><br></br>
+            </div>
+            <button class="submit" name="Submit" value="Submit">Get CRL</button>
+        </form>
+
+        <div>
+
+        <p>Get DID's Verkey From Ledger</p>
+        <form id="get_verkey_form">
+            <div>
+                <label for="did">Recipient's Endpoint DID:</label>
+                <input type="text" id="did" name="did">
+                <!-- <select id="did" name="did">
+                    {% for connection, value in connections.items() %}
+                        <option value="{{connection}}" SELECTED>{{connection}}</option>
+                    {% endfor %}
+                </select> -->
+            </div>
+            <button class="submit" name="Submit" value="Submit">Submit</button>
+        </form>
+        </div>
+    
+    <script>
+        //const createCRLForm = document.getElementById('create_crl');
+        //const getExistingCRLForm = document.getElementById('get_existing_crl');
+        //const ipfs_url = 'http://localhost:5001/';
+        //var crlName = document.getElementsByName("firstname")[0].value;
+
+
+        //getExistingCRLForm.addEventListener('submit', function(e) {
+            //e.preventDefault();
+
+            //create formData variable
+            //const retrieveCRLFormData = new FormData(this);
+
+            //var existingCrlLink = retrieveCRLFormData.get('get_existing_crl');
+            
+        })   
+
+    </script>
+    </body> --}}

@@ -1,0 +1,94 @@
+{{> component_nav moreNavLinks=navLinks}}
+
+<div class="content">
+    {{!-- {{#if proofs}}
+    <div class="card-columns">
+        {{#each proofs}}
+        {{> proof_card proof=this}}
+        {{/each}}
+    </div>
+    {{else}}
+    {{> empty_list }}
+    {{/if}} --}}
+</div>
+
+<!doctype> 
+<html>
+<head>
+<style>
+    h1{
+        font-family: "32px "Lucida Grande", Helvetica, Arial, sans-serif";  
+        font-size: 1rem;
+        color: rgb(68, 67, 67);
+        text-align: center;
+    }
+    textarea {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    div {
+        text-align:center;
+    }
+</style>
+</head>
+    <body>
+        <form id="checkCRLForm">
+            {{!-- <div>
+                <label for="fileName">CRL Name: </label>
+                <input type="text" name="fileName">
+                <br><br>
+                <label for="file">Upload CRL</label>
+                <input type="file" name="newFile">
+                <br></br>
+            </div> --}}
+            <div>
+                <label for="crlHash">CRL Hash: </label>
+                <input type="text" style="width: 500px;" id="crlHash" name="crlHash">
+                <br></br>
+                <label for="check">Credential to Check (Supply JSON with CRED_DEF transaction hash digest and Credential Definition ID:</label>
+                <textarea id="check" name="check" rows="5" cols="80">
+{
+    "id": "2f4a4cc35cdd1c534aeb82be4d03cc70271f2de56b4f1c4e948337665142603d",
+    "cred_def_id": "example:CL:default:10"
+}
+                </textarea>
+                <br><br>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block mb-3" value="Submit">Check CRL</button>
+        </form>
+    </body>
+    <script>
+    const checkCRLForm = document.getElementById('checkCRLForm');
+
+    checkCRLForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        
+        ipfsHash = formData.get('crlHash');
+        //console.log(ipfsHash);
+        crlCheckParams = formData.get('check');
+        //console.log(typeof(JSON.parse(crlCheckParams)));
+        crlCheck = JSON.parse(crlCheckParams);
+
+        fetch('https://ipfs.io/ipfs/'+ ipfsHash)
+            .then(response => response.json())
+            .then(data => {
+                const revokedAssertions = data["revokedAssertions"];
+
+                //direct search CRL to see if credential is revoked (using credential hash)
+                try
+                {
+                    if(revokedAssertions[crlCheck["id"]] != undefined){
+                        alert("Credential Revoked");
+                    } else {
+                        alert("Credential Valid");
+                    }
+                } catch {
+                    alert("Verification Failed");
+                };
+            });
+    });
+    </script>
+</html>

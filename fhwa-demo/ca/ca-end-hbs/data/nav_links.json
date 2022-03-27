@@ -1,0 +1,18 @@
+[
+    {
+        "label": "Connections",
+        "url": "/connections"
+    },
+    {
+        "label": "Issuing",
+        "url": "http://localhost:5000"
+    },
+    {
+        "label": "Revocation",
+        "url": "/revocation"
+    },
+    {
+        "label": "Verification",
+        "url": "/proofs"
+    }
+]
