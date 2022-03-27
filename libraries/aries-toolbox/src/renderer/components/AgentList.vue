@@ -1,7 +1,7 @@
 <template>
   <el-row>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Aries Toolbox</a>
+      <a class="navbar-brand" href="#">FHWA Agent Toolbox</a>
     </nav>
 
     <el-card shadow="never" class="agent-card" v-for="a in agent_list" v-bind:key="a.id">
@@ -52,7 +52,7 @@
         show-icon>
       </el-alert>
     </el-card>
-    <div class="invite-entry">
+    <div class="invite-entry" hidden="yes">
     <h5>Connect to Mediator</h5>
       <el-form :inline="true">
         <el-input
@@ -132,7 +132,7 @@ export default {
         : `file://${__dirname}/index.html#agent/`+a.id;
       let win = new electron.remote.BrowserWindow({
         width: 1000,
-        height: 600,
+        height: 620,
         webPreferences: {
           webSecurity: false,
           contextIsolation: false,
