@@ -4,24 +4,26 @@
 ## How to Run 
 
 
-### Prerequisite 
+### Prerequisite
+#User must have execute permissions for the folder
 
-1. Run `.\ubuntu18_docker_and_py.sh` to install Docker and Python dependencies. 
+1. Run `./ubuntu18_docker_and_py.sh` to install Docker and Python dependencies. 
 
-2. Run `.\ubuntu18_indy_sdk.sh` to install dependencies for our Blockchain Ledger.
+2. Run `./ubuntu18_indy_sdk.sh` to install dependencies for our Blockchain Ledger.
  
-3. Run `.\ubuntu18_install_nodejs.sh` to install NodeJS.
+3. Run `./ubuntu18_install_nodejs.sh` to install NodeJS.
 
 
-### Build and Start Ledger 
+### Build and Start Ledger
+#User must have execute permissions for the folder
 
-1. Run `sudo .\libraries\v-network\manage build` to build ledger.
+1. Run `sudo ./libraries/v-network/manage build` to build ledger.
 
-2. Run `sudo .\libraries\v-network\manage start` to start four nodes and web server for our ledger. 
+2. Run `sudo ./libraries/v-network/manage start` to start four nodes and web server for our ledger. 
 
 3. In the browser, use http://127.0.0.1:9000 to access ledger exploer. 
 
-4. Run `sudo .\libraries\v-network\manage stop` to stop ledger and web server. 
+4. Run `sudo ./libraries/v-network/manage stop` to stop ledger and web server. 
 
 
 ### Start Agent and Controller 
