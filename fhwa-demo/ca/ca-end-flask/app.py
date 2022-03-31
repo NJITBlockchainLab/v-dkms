@@ -61,18 +61,18 @@ def create_credential_definition():
 		pass
 	return redirect(url_for("home"))
 
-@app.route("/get-verkey", methods=["GET","POST"])
-def get_verkey():
-	try:
-		data = request.form
-		data_dict = data.to_dict(flat=False)
-		endpoint_did = data_dict['did'][0]
-		response = requests.get('http://localhost:8021/ledger/did-verkey?did=' + endpoint_did).json()
-		flash(response)
-	except:
-		print("failed")
-		pass
-	return redirect(url_for("home"))
+# @app.route("/get-verkey", methods=["GET","POST"])
+# def get_verkey():
+# 	try:
+# 		data = request.form
+# 		data_dict = data.to_dict(flat=False)
+# 		endpoint_did = data_dict['did'][0]
+# 		response = requests.get('http://localhost:8021/ledger/did-verkey?did=' + endpoint_did).json()
+# 		flash(response)
+# 	except:
+# 		print("failed")
+# 		pass
+# 	return redirect(url_for("home"))
 
 @app.route("/issue-credential",methods=["POST"])
 def issue_credential():

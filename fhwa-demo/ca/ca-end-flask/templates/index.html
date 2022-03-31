@@ -65,7 +65,7 @@
 		</form>
 		</div>
 
-		<p>Get DID's Verkey From Ledger:</p>
+		<!-- <p>Get DID's Verkey From Ledger:</p>
 		<div class="container">
 			{% with messages = get_flashed_messages() %}
 			{% if messages %}
@@ -88,7 +88,7 @@
 				<input type="text" style="width: 500px;" id="did" name="did">
 				<button class="btn btn-primary btn-lg btn-block mb-3" value="Submit">Submit</button>
 			</div>
-		</form>
+		</form> -->
 
 		<p>Issue Credential:</p>
 		<form id="issue_cred_form" action="/issue-credential" method="POST">
@@ -109,29 +109,12 @@
 				</select>
 			</div>
 			<div>
-			<label for="verkey">Recipient's Verkey:</label>
+			<label for="verkey">Recipient's VIN:</label>
 			<input type="text" style="width: 500px;" id="verkey" name="verkey">
 			<button class="btn btn-primary btn-lg btn-block mb-3" value="Submit">Submit</button>
 			</div>
 		</form>
 		</div>
 	</body>
-	<script>
-		//const schemaForm = document.getElementById('schema_form');
-		//const credDefForm = document.getElementById('cred_def_form');
-		//const issueCredForm = document.getElementById('issue_cred_form');
-		//const getVerkeyForm = document.getElementById('get_verkey_form');
-
-		//turn JSON array in form data into a usable Array for the API POST
-		//function handleAttributes(formString,arrayString) {
-			//var attributesData = document.getElementById(formString).elements[arrayString].innerHTML;
-			//var attributesArray = attributesData.split("[").join("").split("]").join("").split("\n").join("").split(",");
-			//handledArray = [];
-			//for(let attr of attributesArray){
-				//handledArray.push(attr);
-			//}
-			//return handledArray;
-		//}
-	</script>
 </html>
 {% endblock %}
