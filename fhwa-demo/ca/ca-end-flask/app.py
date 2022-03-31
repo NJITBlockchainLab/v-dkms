@@ -84,7 +84,7 @@ def issue_credential():
 		
 		issue_credential['cred_def_id'] = credential_dict['cred_def_id'][0]
 		issue_credential['connection_id'] = credential_dict['connection_id'][0]
-		issue_credential["credential_proposal"]["attributes"] = [{'name':'public_key','value':credential_dict['verkey'][0]}]
+		issue_credential["credential_proposal"]["attributes"] = [{'name':'vin','value':credential_dict['verkey'][0]}]
 		#print(issue_credential)
 		
 		new_cred_json = json.loads(json.dumps(issue_credential))
