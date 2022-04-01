@@ -1,4 +1,5 @@
 # Agent API
+
 ## Version Number
 - API version: v0.1.0
 - Package version: 0.1.0
@@ -289,7 +290,6 @@ Class | Method | HTTP request | Description
  All endpoints do not require authorization.
 
 
-## Author
 
 
 
