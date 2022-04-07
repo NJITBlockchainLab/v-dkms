@@ -1,5 +1,5 @@
 {
-  "name": "acme-controller",
+  "name": "ca-controller",
   "version": "0.0.0",
   "private": true,
   "scripts": {
