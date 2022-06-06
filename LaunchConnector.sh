@@ -1,5 +1,5 @@
 #!/bin/bash
-cd libraries/connector
+cd libraries/controller
 npm i
 npm run dev
 
