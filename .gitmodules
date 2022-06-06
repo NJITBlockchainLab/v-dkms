@@ -1,6 +1,7 @@
-[submodule "libraries/v-network"]
-	path = libraries/v-network
-	url = https://github.com/NJITBlockchainLab/v-network.git
+
 [submodule "libraries/controller"]
 	path = libraries/controller
 	url = https://github.com/NJITBlockchainLab/agent-controller.git
+[submodule "libraries/network"]
+	path = libraries/network
+	url = https://github.com/NJITBlockchainLab/v-network.git
