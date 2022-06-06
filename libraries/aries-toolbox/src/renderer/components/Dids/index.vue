@@ -10,26 +10,29 @@
         @did-activate="activate_did">
     </did-list>
 
-  <p>Create a DID:</p>
-  <el-form :inline="false" label-width="120px">
-    <link rel="shortcut icon" href="/static"/>
-    <el-form-item label="DID:">
-      <el-input v-model="did_form.did" style="width:200px;"> </el-input>
-      <i>Your new DID.</i>
-    </el-form-item>
-    <el-form-item label="Seed:">
-      <el-input v-model="did_form.seed" style="width:200px;"> </el-input>
-      <i>Seed for this DID.</i>
-    </el-form-item>
-    <el-form-item label="Label:">
-      <el-input v-model="did_form.label" style="width:200px;"> </el-input>
-      <i>An alias used to easily identify your DID.</i>
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="createDid()">Create DID</el-button>
-    </el-form-item>
-  </el-form>
-  </el-row>
+
+    <p class="navbar navbar-expand-lg navbar-light">Create a DID:</p>
+    <el-form :inline="false" label-width="120px">
+      <link rel="shortcut icon" href="/static"/>
+      <el-form-item label="DID:">
+        <el-input v-model="did_form.did" style="width:200px;"> </el-input>
+        <i>Your new DID.</i>
+      </el-form-item>
+      <el-form-item label="Seed:">
+        <el-input v-model="did_form.seed" style="width:200px;"> </el-input>
+        <i>Seed for this DID.</i>
+      </el-form-item>
+      <el-form-item label="Label:">
+        <el-input v-model="did_form.label" style="width:200px;"> </el-input>
+        <i>An alias used to easily identify your DID.</i>
+      </el-form-item>
+      <el-form-item>
+        <el-col :span="2" :offset="19">
+          <el-button type="primary" icon="el-icon-check" @click="createDid()">Create</el-button>
+        </el-col>
+      </el-form-item>
+    </el-form>
+    </el-row>
 </template>
 
 <script>
@@ -42,7 +45,7 @@ export const metadata = {
   menu: {
     label: 'DIDs',
     icon: 'el-icon-link',
-    group: 'Agent to Agent',
+    group: 'Identity',
     priority: 10,
     required_protocols: [
       'did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-dids/0.1'

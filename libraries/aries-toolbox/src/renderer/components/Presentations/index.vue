@@ -23,7 +23,7 @@ export const metadata = {
   menu: {
     label: 'Presentations',
     icon: 'el-icon-document-checked',
-    group: 'Agent to Agent',
+    group: 'Identity',
     priority: 90,
     required_protocols: [
       'did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-holder/0.1'
@@ -62,7 +62,7 @@ export default {
     message_bus(),
     share({
       use: [
-        'active_connections', 
+        'active_connections',
         'cred_defs',
         'holder_presentations',
         'id_to_connection'
@@ -84,7 +84,7 @@ export default {
         "presentation_proposal": {
           "@type": "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/present-proof/1.0/presentation-preview",
           /**
-           * name 
+           * name
            * cred_def_id //optional
            * mime_type //optional
            * value //optional

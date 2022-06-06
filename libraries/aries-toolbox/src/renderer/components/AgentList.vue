@@ -1,7 +1,7 @@
 <template>
   <el-row>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">FHWA Agent Toolbox</a>
+      <a class="navbar-brand" href="#">Agent Connector</a>
     </nav>
 
     <el-card shadow="never" class="agent-card" v-for="a in agent_list" v-bind:key="a.id">
@@ -16,7 +16,7 @@
     <hr v-if="agent_list.length > 0">
 
     <div class="invite-entry">
-      <h5>New Agent Connection</h5>
+      <h5>Connect to Agent Dashboard</h5>
       <el-form :inline="true">
         <el-input
           v-model="new_agent_invitation"
@@ -52,7 +52,7 @@
         show-icon>
       </el-alert>
     </el-card>
-    <div class="invite-entry" hidden="yes">
+    <div class="invite-entry" v-if="false">
     <h5>Connect to Mediator</h5>
       <el-form :inline="true">
         <el-input
@@ -131,8 +131,8 @@ export default {
         ? 'http://localhost:9080/#/agent/'+a.id
         : `file://${__dirname}/index.html#agent/`+a.id;
       let win = new electron.remote.BrowserWindow({
-        width: 1000,
-        height: 620,
+        width: 1024,
+        height: 768,
         webPreferences: {
           webSecurity: false,
           contextIsolation: false,
@@ -313,15 +313,15 @@ export default {
       },
 
     async newAgentInvitationProcess (raw_invitation) {
-      let urlVars = this.getUrlVars(raw_invitation); 
+      let urlVars = this.getUrlVars(raw_invitation);
       if ("oob" in urlVars) {
         //OOB Invitation
         let invite_b64 = this.getUrlVars(raw_invitation)["oob"];
-      
+
         //base 64 decode
         let invite_string = base64_decode(invite_b64);
         let invite = JSON.parse(invite_string);
-          
+
         const protocolToHandler = {
           "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0": ConnectionsProtocol,
           "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/didexchange/1.0": DIDExProtocol,

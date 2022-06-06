@@ -27,7 +27,7 @@ export const metadata = {
   menu: {
     label: 'Discover Features',
     icon: 'el-icon-discover',
-    group: 'Toolbox to Agent',
+    group: 'Debug',
     priority: 5,
     required_protocols: [
     ]

@@ -1,57 +1,59 @@
 <template>
-  <el-container>
-    <el-menu
-      ref="menu"
-      style="-webkit-user-select:none; overflow: auto;"
-      mode="vertical"
-      id="side-menu"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"
-      router>
-      <el-menu-item-group :index="group" v-for="(group_modules, group) in matching_modules_grouped" v-bind:key="group">
-        <span class="menu-title" slot="title">{{group}}</span>
-        <el-menu-item :index="m.path" v-for="m in group_modules" v-bind:key="m.path" :route="{name: m.path}">
-          <i v-bind:class="m.icon"></i>
-          <span>{{m.label}}</span>
-        </el-menu-item>
-      </el-menu-item-group>
-    </el-menu>
-    <nav id="top-bar" class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">{{connection.label}}</a>
-      <el-form
-        :disabled="dids.length === 0">
-        <el-select
-          v-model="active_did"
-          no-data-text="No DIDs found"
-          filterable placeholder="Activate DID">
-          <el-option
-            v-for="did in dids"
-            :key="did.did"
-            :label="did.did"
-            :value="did">
-          </el-option>
-        </el-select>
-        <!--
-          <el-select
-          v-if="$refs.ledgerTab"
-          v-model="$refs.ledgerTab.active_ledger_selector.ledger"
-          filterable placeholder="activate ledger" >
-          <el-option
-          v-for="ledger in $refs.ledgerTab.ledgers"
-          :key="ledger.name"
-          :label="ledger.name"
-          :value="ledger.name">
-          </el-option>
-          </el-select>
-        -->
-      </el-form>
-    </nav>
-    <taa></taa>
+  <el-container class="panel">
+    <el-header>
+      <el-col :span="14" style="font-size:26px;">
+        <span><i style="color:#c0ccda">Agent Controller {{connection.label}}</i></span>
+        <span :disabled="true"> {{active_did}}</span>
+      </el-col>
+<!--      <el-col :span="8">-->
+<!--        <span>My issuer DID: {{didNew}}</span>-->
+<!--      </el-col>-->
+<!--      <el-col :span="4">-->
+<!--        <el-form-->
+<!--          :disabled="dids.length === 0">-->
+<!--          <el-select-->
+<!--            v-model="active_did"-->
+<!--            no-data-text="No DIDs found"-->
+<!--            filterable placeholder="Activate DID">-->
+<!--            <el-option-->
+<!--              v-for="did in dids"-->
+<!--              :key="did.did"-->
+<!--              :label="did.did"-->
+<!--              :value="did">-->
+<!--            </el-option>-->
+<!--          </el-select>-->
+<!--        </el-form>-->
+<!--      </el-col>-->
+    </el-header>
 
-    <el-main id="main-display">
-      <router-view></router-view>
-    </el-main>
+    <el-container>
+      <el-aside style="background-color: #545c64; width: 200px">
+        <el-menu
+          ref="menu"
+          style="-webkit-user-select:none; overflow: auto; border: none"
+          mode="vertical"
+          id="side-menu"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+          router>
+          <el-menu-item-group :index="group" v-for="(group_modules, group) in matching_modules_grouped" v-bind:key="group">
+            <span class="menu-title" slot="title">{{group}}</span>
+            <el-menu-item :index="m.path" v-for="m in group_modules" v-bind:key="m.path" :route="{name: m.path}">
+              <i v-bind:class="m.icon"></i>
+              <span>{{m.label}}</span>
+            </el-menu-item>
+          </el-menu-item-group>
+        </el-menu>
+      </el-aside>
+
+
+      <el-main id="main-display" style="padding: 0px">
+        <router-view></router-view>
+      </el-main>
+
+    </el-container>
+
   </el-container>
 </template>
 
@@ -186,7 +188,23 @@ export default {
           return r;
       }, Object.create(null));
       return module_groups;
+    },
+    didNew() {
+
+      let did = '';
+        if (!this.dids) {
+          return "did";
+        }
+      else {
+        this.dids.forEach(item=> {
+          if (item.metadata.public === true) {
+            did = item.did;
+          }
+        });
+      }
+      return did;
     }
+
 
   },
   methods: {
@@ -330,24 +348,29 @@ export default {
   }
 
   #main-display {
-    position: absolute;
-    right:0px;
-    bottom: 0px;
-    top: 60px;
-    left: 200px;
+    /*position: absolute;*/
+    /*right:0px;*/
+    /*bottom: 0px;*/
+    /*top: 60px;*/
+    /*left: 200px;*/
   }
 
   #side-menu {
-    height: 100%;
-    width: 200px;
-    position: absolute;
-
+    /*position: absolute;*/
   }
+
   #side-menu .menu-title {
     color: #fff
   }
   #side-menu i {
     color: #409EFF;
+  }
+
+  .panel {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 100%;
   }
 
   .el-menu-item-group__title {
@@ -361,6 +384,12 @@ export default {
 
   .problem-report-notification {
     cursor: pointer;
+  }
+
+  .el-header {
+    background: #1F2D3D;
+    color: #c0ccda;
+    line-height: 60px;
   }
 
 </style>

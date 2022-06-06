@@ -1,28 +1,32 @@
 <template >
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">{{ title }}</a>
-      <el-button
-        type="primary"
-        icon="el-icon-plus"
-        @click="issueFormActive = true">Issue</el-button>
-      <el-button
-        type="primary"
-        icon="el-icon-refresh"
-        @click="$emit('issue-cred-refresh',)"></el-button>
-    </nav>
+  <el-row>
+    <el-row class="navbar navbar-expand-lg navbar-light bg-light" justify="end">
+      <el-col :span=20>
+        <a class="navbar-brand" href="#">{{ title }}</a>
+      </el-col>
+      <el-col :span=4>
+        <el-button
+          type="primary"
+          icon="el-icon-plus"
+          @click="issueFormActive = true"></el-button>
+        <el-button
+          type="primary"
+          icon="el-icon-refresh"
+          @click="$emit('issue-cred-refresh',)"></el-button>
+      </el-col>
+    </el-row>
     <el-collapse v-model="expanded_items">
       <ul class="list">
         <el-collapse-item
           v-for="issued_credential in credentials"
-          v-bind:title="credential_title(issued_credential)"
+          v-bind:title="'\xa0\xa0\xa0\xa0\xa0'+credential_title(issued_credential)"
           :name="issued_credential.credential_exchange_id"
           :key="issued_credential.issued_credential">
           <template slot="title">
             <i :class="issued_credential.state === 'credential_acked' ? 'el-icon-finished status' : 'el-icon-loading status'"></i>
             {{credential_title(issued_credential)}}
           </template>
-          <el-row :key="issued_credential.issued_credential">
+          <el-row :key="issued_credential.issued_credential" style="padding-left: 20px">
             <ul>
               <li><strong>Issued to:</strong> {{issued_to(issued_credential)}}</li>
               <li><strong>State:</strong> {{issued_credential.state}}</li>
@@ -98,17 +102,9 @@
         <el-button :disabled="!issueForm.selected_cred_def" type="primary" @click="issue">Confirm</el-button>
       </span>
     </el-dialog>
-  </div>
+  </el-row>
 </template>
-<style>
-.issued-attrs {
-  margin-left: 2em;
-}
-.status {
-  font-size: 1.5em;
-  margin-right: .25em;
-}
-</style>
+
 <script>
 import VueJsonPretty from 'vue-json-pretty';
 import share from '@/share.js';
@@ -209,3 +205,13 @@ export default {
   }
 }
 </script>
+
+<style>
+.issued-attrs {
+  margin-left: 2em;
+}
+.status {
+  font-size: 1.5em;
+  margin-right: .25em;
+}
+</style>

@@ -1,11 +1,14 @@
 <template>
-  <el-row>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <el-row >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
       <a class="navbar-brand" href="#">Compose a Message</a>
     </nav>
     <v-jsoneditor v-model="content" :options="options"></v-jsoneditor>
-    <el-button type="secondary" @click="send">Send</el-button>
-    <message-list v-bind:messages="recent_messages"></message-list>
+    <div style="text-align: center">
+      <el-button type="secondary" @click="send">Send</el-button>
+    </div>
+
+    <message-list v-bind:messages="recent_messages" style="padding-right: 20px;padding-left: 20px"></message-list>
   </el-row>
 </template>
 
@@ -19,7 +22,7 @@ export const metadata = {
   menu: {
     label: 'Compose',
     icon: 'el-icon-message',
-    group: 'Toolbox to Agent',
+    group: 'Debug',
     priority: 40,
     required_protocols: [
     ]

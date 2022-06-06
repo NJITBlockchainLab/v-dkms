@@ -35,7 +35,7 @@ export const metadata = {
   menu: {
     label: 'Credential Issuance',
     icon: 'el-icon-document',
-    group: 'Agent to Agent',
+    group: 'Identity',
     priority: 50,
     required_protocols: [
       'did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-schemas/0.1',

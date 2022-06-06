@@ -1,20 +1,25 @@
 <template >
-  <div v-if="list.length">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">{{ title }}</a>
-      <el-button
-        type="primary"
-        icon="el-icon-refresh"
-        @click="$emit('refresh',)"></el-button>
-    </nav>
-    <el-collapse v-model="expanded_items">
+  <el-row v-if="list.length">
+    <el-row class="navbar navbar-expand-lg navbar-light bg-light" justify="end">
+      <el-col :span="22">
+        <a class="navbar-brand" href="#">{{ title }}</a>
+      </el-col>
+      <el-col :span="2">
+        <el-button
+          type="primary"
+          icon="el-icon-refresh"
+          @click="$emit('refresh',)"></el-button>
+      </el-col>
+    </el-row>
+
+    <el-collapse v-model="expanded_items" >
       <ul class="list">
         <el-collapse-item
           v-for="(connection) in list"
-          v-bind:title="get_name(connection)"
+          v-bind:title="'\xa0\xa0\xa0\xa0\xa0'+get_name(connection)"
           :name="connection.connection_id"
           :key="connection.connection">
-          <el-row :key="connection.connection">
+          <el-row :key="connection.connection" style="padding-left: 20px">
             <ul>
               <li><strong>Connected to:</strong> {{connection.label}} ({{connection.connection_id}})</li>
               <li><strong>State:</strong> {{connection.state}}</li>
@@ -28,11 +33,13 @@
                 :data="connection.raw_repr">
               </vue-json-pretty>
             </div>
-            <template v-if="editable">
-              <el-button @click="edit(connection)">Edit</el-button>
-            </template>
-            <el-button type="danger" @click="delete_conn(connection)">Delete</el-button>
-            <el-button v-on:click="collapse_expanded(connection)"><i class="el-icon-arrow-up"></i></el-button>
+            <div style="text-align: center">
+              <template v-if="editable">
+                <el-button @click="edit(connection)">Edit</el-button>
+              </template>
+              <el-button type="danger" @click="delete_conn(connection)">Delete</el-button>
+              <el-button v-on:click="collapse_expanded(connection)"><i class="el-icon-arrow-up"></i></el-button>
+            </div>
           </el-row>
         </el-collapse-item>
       </ul>
@@ -51,7 +58,7 @@
         <el-button type="primary" @click="update">Confirm</el-button>
       </span>
     </el-dialog>
-  </div>
+  </el-row>
 </template>
 
 <script>

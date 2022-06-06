@@ -1,17 +1,23 @@
 <template >
   <!-- TODO: Split this into more files? -->
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">{{ title }}</a>
-      <el-button
-        type="primary"
-        icon="el-icon-plus"
-        @click="requestFormActive = true">Request Presentation</el-button>
-      <el-button
-        type="primary"
-        icon="el-icon-refresh"
-        @click="$emit('verification-refresh',)"></el-button>
-    </nav>
+    <el-row class="navbar navbar-expand-lg navbar-light bg-light" justify="end">
+      <el-col :span="20">
+        <a class="navbar-brand" href="#">{{ title }}</a>
+      </el-col>
+      <el-col :span="4">
+        <el-button
+          type="primary"
+          icon="el-icon-plus"
+          @click="requestFormActive = true"></el-button>
+
+        <el-button
+          type="primary"
+          icon="el-icon-refresh"
+          @click="$emit('verification-refresh',)"></el-button>
+      </el-col>
+    </el-row>
+
     <el-collapse v-model="expanded_items">
         <el-collapse-item
           v-for="presentation in presentations"
@@ -20,7 +26,7 @@
           <template slot="title">
             <i v-bind:class="presentation.verified ? 'el-icon-success verified' : 'el-icon-circle-close verified'"></i> {{presentation_title(presentation)}}
           </template>
-          <el-row>
+          <el-row style="padding-left: 20px">
             <ul>
               <li><strong>Requested from:</strong> {{presentation.connection_their_label}} ({{presentation.connection_id}})</li>
               <li><strong>Presentation Exchange ID:</strong> {{presentation.presentation_exchange_id}}</li>

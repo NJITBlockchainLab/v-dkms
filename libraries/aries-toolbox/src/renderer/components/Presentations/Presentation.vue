@@ -1,17 +1,22 @@
 <template >
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#"> {{ title }} </a>
-      <el-button
-        type="primary"
-        icon="el-icon-plus"
-        disabled
-        @click="proposalFormActive = true">Presentation Proposal</el-button>
-      <el-button
-        type="primary"
-        icon="el-icon-refresh"
-        @click="$emit('presentation-refresh',)"></el-button>
-    </nav>
+  <el-row>
+    <el-row class="navbar navbar-expand-lg navbar-light bg-light" justify="end">
+      <el-col :span="20">
+        <a class="navbar-brand" href="#"> {{ title }} </a>
+      </el-col>
+      <el-col :span="4">
+        <el-button
+          type="primary"
+          icon="el-icon-plus"
+          disabled
+          @click="proposalFormActive = true"></el-button>
+        <el-button
+          type="primary"
+          icon="el-icon-refresh"
+          @click="$emit('presentation-refresh',)"></el-button>
+      </el-col>
+    </el-row>
+
     <el-collapse v-model="ver_pres_expanded_items">
       <ul class="list">
         <el-collapse-item
@@ -22,7 +27,7 @@
             <i :class="presentation.state === 'presentation_acked' ? 'el-icon-finished status' : 'el-icon-loading status'"></i>
             {{presentation_title(presentation)}}
           </template>
-          <el-row :key="presentation.presentation">
+          <el-row :key="presentation.presentation" style="padding-left: 20px">
             <ul>
               <li><strong>Requested by:</strong> {{connection_details[presentation.connection_id].label}} ({{presentation.connection_id}})</li>
               <li><strong>State:</strong> {{presentation.state}}</li>
@@ -177,7 +182,7 @@
         <el-button type="primary" @click="send">Send</el-button>
       </span>
     </el-dialog>
-  </div>
+  </el-row>
 </template>
 
 <style>
@@ -239,7 +244,7 @@ export default {
       this.proposalForm.predicates = [];
 
       this.$emit('send-presentation-proposal', values);
-      
+
     },
     presentation_title: function(pres) {
       let presentation_details = '';

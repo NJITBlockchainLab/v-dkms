@@ -20,7 +20,7 @@
       @connection-editted="update_connection"
       @connection-deleted="delete_connection"></connection-list>
 
-    <p style="margin-top: 1em;">Add connection from invitation:</p>
+    <p class="navbar navbar-expand-lg navbar-light">Add connection from invitation:</p>
     <el-form @submit.native.prevent label-width="120px">
       <el-form-item
         label="Invitation URL:">
@@ -65,7 +65,7 @@ export const metadata = {
   menu: {
     label: 'Connections',
     icon: 'el-icon-user',
-    group: 'Agent to Agent',
+    group: 'Connection',
     priority: 30,
     required_protocols: [
       protocol

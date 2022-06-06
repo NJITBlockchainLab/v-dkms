@@ -1,33 +1,35 @@
 <template>
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">{{ title }}</a>
-      <el-input v-model="retrieve_schema_id" style="width: 300px;">
-        <el-button slot="append" icon="el-icon-search" @click="retrieve"
-          >Retrieve</el-button
-        >
-      </el-input>
-      <el-button
-        type="primary"
-        icon="el-icon-plus"
-        @click="createFormActive = true"
-        >Create</el-button
-      >
-      <el-button
-        type="primary"
-        icon="el-icon-refresh"
-        @click="$emit('schema-refresh')"
-      ></el-button>
-    </nav>
+  <el-row>
+    <el-row class="navbar navbar-expand-lg navbar-light bg-light" justify="end">
+      <el-col :span=10><a class="navbar-brand" href="#">{{ title }}</a></el-col>
+      <el-col :span="10">
+        <el-input v-model="retrieve_schema_id" style="width: 300px;">
+          <el-button slot="append" icon="el-icon-search" @click="retrieve"></el-button>
+        </el-input>
+      </el-col>
+      <el-col :span="4">
+        <el-button
+          type="primary"
+          icon="el-icon-plus"
+          @click="createFormActive = true"
+        ></el-button>
+        <el-button
+          type="primary"
+          icon="el-icon-refresh"
+          @click="$emit('schema-refresh')"
+        ></el-button>
+      </el-col>
+    </el-row>
+
     <el-collapse v-model="expanded_items">
       <ul class="list">
         <el-collapse-item
           v-for="schema in list"
-          v-bind:title="schema.schema_name + ' ' + schema.schema_version"
+          v-bind:title="'\xa0\xa0\xa0\xa0\xa0' + schema.schema_name + ' ' + schema.schema_version"
           :name="schema.schema"
           :key="schema.schema"
         >
-          <el-row :key="schema.schema">
+          <el-row :key="schema.schema" style="padding-left: 20px">
             <ul>
               <li><strong>Name:</strong> {{schema.schema_name}}</li>
               <li><strong>Version:</strong> {{schema.schema_version}}</li>
@@ -85,7 +87,7 @@
         <el-button type="primary" @click="create">Confirm</el-button>
       </span>
     </el-dialog>
-  </div>
+  </el-row>
 </template>
 
 <script>

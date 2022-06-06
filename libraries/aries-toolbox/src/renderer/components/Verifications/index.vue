@@ -21,7 +21,7 @@ export const metadata = {
   menu: {
     label: 'Verification',
     icon: 'el-icon-s-claim',
-    group: 'Agent to Agent',
+    group: 'Identity',
     priority: 100,
     required_protocols: [
       "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-issuer/0.1"

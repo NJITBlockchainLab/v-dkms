@@ -1,5 +1,5 @@
 <template>
-  <el-row>
+  <el-row style="padding-left: 20px;padding-top: 20px;padding-right: 20px">
     <el-form @submit.native.prevent :inline="true">
       <el-form-item label="To:">
         <el-select
@@ -17,18 +17,21 @@
         </el-select>
       </el-form-item>
     </el-form>
-    <el-form @submit.native.prevent :inline="true" style="margin-bottom: 1em;">
-      <el-input
-        placeholder="Message"
-        @keyup.enter.native="send"
-        v-model="content"
-        style="width:500px;">
-      </el-input>
+    <div style="text-align: right">
+      <el-form @submit.native.prevent :inline="true" style="margin-bottom: 1em;">
+        <el-input
+          placeholder="Message"
+          @keyup.enter.native="send"
+          v-model="content"
+          style="width:550px;">
+        </el-input>
         <el-button
           type="primary"
           icon="el-icon-s-promotion"
           @click="send">Send</el-button>
-    </el-form>
+      </el-form>
+    </div>
+
     <div id="message-container">
         <div
           v-for="m in messages"
@@ -96,7 +99,7 @@ export const metadata = {
   menu: {
     label: 'Messages',
     icon: 'el-icon-chat-line-square',
-    group: 'Agent to Agent',
+    group: 'Connection',
     priority: 45,
     required_protocols: [
       protocol

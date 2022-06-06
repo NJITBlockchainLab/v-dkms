@@ -130,7 +130,7 @@ export const metadata = {
   menu: {
     label: 'Routing',
     icon: 'el-icon-location-outline',
-    group: 'Agent to Agent',
+    group: 'Connection',
     priority: 55,
     required_protocols: [ PROTOCOL ]
   }

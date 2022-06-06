@@ -1,5 +1,5 @@
 <template>
-  <el-row>
+  <el-row style="padding-left: 20px;padding-right: 20px">
     <div>
       Endpoint: {{get_connection().service.serviceEndpoint}}<br/>
       Use Return Route: {{get_connection().use_return_route}}
@@ -18,7 +18,7 @@ export const metadata = {
   menu: {
     label: 'Message History',
     icon: 'el-icon-receiving',
-    group: 'Toolbox to Agent',
+    group: 'Debug',
     priority: 50,
     required_protocols: [
     ]

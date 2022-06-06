@@ -89,7 +89,7 @@ export const metadata = {
   menu: {
     label: 'Mediation',
     icon: 'el-icon-guide',
-    group: 'Agent to Agent',
+    group: 'Connection',
     priority: 50,
     required_protocols: [
       'https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-mediator/0.1'

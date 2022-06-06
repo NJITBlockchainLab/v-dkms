@@ -4,7 +4,8 @@
       title="Retrieved Credential Definitions"
       v-bind:retrievable="true"
       v-bind:can_create="false"
-      v-bind:list="proposal_cred_defs"></cred-def-list>
+      v-bind:list="proposal_cred_defs">
+    </cred-def-list>
     <my-credentials-list
       title="Credentials"
       editable="false"
@@ -26,7 +27,7 @@ export const metadata = {
   menu: {
     label: 'My Credentials',
     icon: 'el-icon-bank-card',
-    group: 'Agent to Agent',
+    group: 'Identity',
     priority: 60,
     required_protocols: [
       "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-holder/0.1"

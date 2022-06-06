@@ -1,64 +1,75 @@
-<template >
-  <el-row>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">{{ title }}</a>
-    <el-button
-      type="primary"
-      icon="el-icon-refresh"
-      @click="fetch_dids"></el-button>
-  </nav>
-  <div v-if="list.length">
-    <el-collapse v-model="expanded_items">
-      <ul class="list">
-        <el-collapse-item
-          v-for="did in list"
-          v-bind:title="get_name(did)"
-          :name="did.did"
-          :key="did.did">
-          <el-row :key="did.did">
-            <div>
-              <vue-json-pretty
-                :deep=2
-                :data="did">
-              </vue-json-pretty>
-            </div>
-            <template v-if="editable">
-              <el-button @click="edit(did)">Edit</el-button>
-            </template>
-            <!-- <el-button type="danger" @click="delete_did(did)">Delete</el-button> -->
-            <!-- <el-button v-if="activeDid" v-on:click="publish(did)">Publish</el-button> -->
-            <el-button type="primary" @click="edit(did)">Edit</el-button>
-            <el-button
-              v-if="!('metadata' in did &&
-                    'public' in did.metadata &&
-                    did.metadata.public)"
-              v-on:click="activate(did)"
-              type="primary"
-              >Activate</el-button>
-            <!-- <el-button v-on:click="resolve(did)">read permissions</el-button> -->
-            <!-- <el-button v-on:click="collapse_expanded(did)">^</el-button> -->
-          </el-row>
-        </el-collapse-item>
-      </ul>
-    </el-collapse>
-    <el-dialog title="Edit did attributes" :visible.sync="editFormActive">
-      <el-form :model="editForm">
-        <el-form-item label="Label:" :label-width="formLabelWidth">
-          <el-input v-model="editForm.label" autocomplete="off"></el-input>
-        </el-form-item>
-        <!-- <el-form-item label="permission:" :label-width="formLabelWidth">
-          <el-input v-model="editForm.permission" autocomplete="off"></el-input>
-        </el-form-item> -->
-        <!-- <el-form-item label="public:" :label-width="formLabelWidth">
-          <el-input v-model="editForm.permission" autocomplete="off"></el-input>
-        </el-form-item> -->
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="editFormActive = false">Cancel</el-button>
-        <el-button type="primary" @click="update">Confirm</el-button>
-      </span>
-    </el-dialog>
-  </div>
+<template>
+  <el-row style="width: 100%">
+    <el-row class="navbar navbar-expand-lg navbar-light bg-light" justify="end">
+      <el-col :span="22">
+        <a class="navbar-brand" href="#">{{ title }}</a>
+      </el-col>
+      <el-col :span="2">
+        <el-button
+          type="primary"
+          icon="el-icon-refresh"
+          @click="fetch_dids"></el-button>
+      </el-col>
+    </el-row>
+
+    <el-row>
+      <div v-if="list.length">
+        <el-collapse v-model="expanded_items">
+          <ul class="list">
+            <el-collapse-item
+              v-for="did in list"
+              v-bind:title="'\xa0\xa0\xa0\xa0\xa0'+get_name(did)"
+              :name="did.did"
+              :key="did.did">
+              <el-row :key="did.did" style="padding-left: 20px">
+                <div>
+                  <vue-json-pretty
+                    :deep=2
+                    :data="did">
+                  </vue-json-pretty>
+                </div>
+                <template v-if="editable">
+                  <el-button @click="edit(did)">Edit</el-button>
+                </template>
+                <!-- <el-button type="danger" @click="delete_did(did)">Delete</el-button> -->
+                <!-- <el-button v-if="activeDid" v-on:click="publish(did)">Publish</el-button> -->
+                <div style="text-align: center">
+                  <el-button type="primary" @click="edit(did)">Edit</el-button>
+                  <el-button
+                    v-if="!('metadata' in did &&
+                      'public' in did.metadata &&
+                      did.metadata.public)"
+                    v-on:click="activate(did)"
+                    type="primary"
+                  >Activate</el-button>
+                </div>
+
+                <!-- <el-button v-on:click="resolve(did)">read permissions</el-button> -->
+                <!-- <el-button v-on:click="collapse_expanded(did)">^</el-button> -->
+              </el-row>
+            </el-collapse-item>
+          </ul>
+        </el-collapse>
+        <el-dialog title="Edit did attributes" :visible.sync="editFormActive">
+          <el-form :model="editForm">
+            <el-form-item label="Label:" :label-width="formLabelWidth">
+              <el-input v-model="editForm.label" autocomplete="off"></el-input>
+            </el-form-item>
+            <!-- <el-form-item label="permission:" :label-width="formLabelWidth">
+              <el-input v-model="editForm.permission" autocomplete="off"></el-input>
+            </el-form-item> -->
+            <!-- <el-form-item label="public:" :label-width="formLabelWidth">
+              <el-input v-model="editForm.permission" autocomplete="off"></el-input>
+            </el-form-item> -->
+          </el-form>
+          <span slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="update">Confirm</el-button>
+            <el-button @click="editFormActive = false">Cancel</el-button>
+
+          </span>
+        </el-dialog>
+      </div>
+    </el-row>
   </el-row>
 </template>
 

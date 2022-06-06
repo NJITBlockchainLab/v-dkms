@@ -1,16 +1,22 @@
 <template >
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">{{ title }}</a>
-      <el-button
-        type="primary"
-        icon="el-icon-plus"
-        @click="proposalFormActive = true">Send Credential Proposal</el-button>
-      <el-button
-        type="primary"
-        icon="el-icon-refresh"
-        @click="$emit('cred-refresh',)"></el-button>
-    </nav>
+    <el-row class="navbar navbar-expand-lg navbar-light bg-light" justify="end">
+      <el-col :span="20">
+        <a class="navbar-brand" href="#">{{ title }}</a>
+      </el-col>
+      <el-col :span="4">
+        <el-button
+          type="primary"
+          icon="el-icon-plus"
+          @click="proposalFormActive = true"></el-button>
+        <el-button
+          type="primary"
+          icon="el-icon-refresh"
+          @click="$emit('cred-refresh',)"></el-button>
+      </el-col>
+    </el-row>
+
+
     <el-collapse v-model="expanded_items">
       <ul class="list">
         <el-collapse-item
@@ -21,7 +27,7 @@
             <i :class="credential.state === 'credential_acked' ? 'el-icon-finished status' : 'el-icon-loading status'"></i>
             {{credential_title(credential)}}
           </template>
-          <el-row>
+          <el-row style="padding-left: 20px">
             <ul>
               <li><strong>State:</strong> {{credential.state}}</li>
               <li><strong>Credential Definition ID:</strong> {{credential.credential_definition_id}}</li>
