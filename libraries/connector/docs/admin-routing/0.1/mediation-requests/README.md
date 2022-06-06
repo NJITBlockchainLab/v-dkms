@@ -1,1 +1,0 @@
-See [mediation-requests](/docs/admin-routing/0.1/README.md#mediation-requests).

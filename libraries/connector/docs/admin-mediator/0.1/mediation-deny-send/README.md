@@ -1,1 +1,0 @@
-See [mediation-deny-send](/docs/admin-mediator/0.1/README.md#mediation-deny-send).

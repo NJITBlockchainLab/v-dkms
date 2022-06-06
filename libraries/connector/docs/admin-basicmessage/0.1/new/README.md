@@ -1,1 +1,0 @@
-See [new](/docs/admin-basicmessage/0.1/README.md#new).

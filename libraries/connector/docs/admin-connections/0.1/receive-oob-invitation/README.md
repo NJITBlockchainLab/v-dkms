@@ -1,1 +1,0 @@
-See [receive-oob-invitation](/docs/admin-connections/0.1/README.md#receive-oob-invitation).

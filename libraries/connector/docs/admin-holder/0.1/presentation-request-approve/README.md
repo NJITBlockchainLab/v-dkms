@@ -1,1 +1,0 @@
-See [presentation-request-approve](/docs/admin-holder/0.1/README.md#presentation-request-approve).

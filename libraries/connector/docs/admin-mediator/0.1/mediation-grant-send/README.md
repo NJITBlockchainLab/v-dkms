@@ -1,1 +1,0 @@
-See [mediation-grant-send](/docs/admin-mediator/0.1/README.md#mediation-grant-send).

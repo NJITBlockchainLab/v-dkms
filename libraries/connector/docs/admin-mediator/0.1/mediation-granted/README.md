@@ -1,1 +1,0 @@
-See [mediation-granted](/docs/admin-mediator/0.1/README.md#mediation-granted).

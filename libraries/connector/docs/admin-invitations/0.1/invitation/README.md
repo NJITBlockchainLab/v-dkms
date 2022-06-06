@@ -1,1 +1,0 @@
-See [invitation](/docs/admin-invitations/0.1/README.md#invitation).

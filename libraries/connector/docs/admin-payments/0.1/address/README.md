@@ -1,1 +1,0 @@
-See [address](/docs/admin-payments/0.1/README.md#address).

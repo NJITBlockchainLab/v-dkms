@@ -1,1 +1,0 @@
-See [credential-offer-received](/docs/admin-holder/0.1/README.md#credential-offer-received).

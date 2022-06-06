@@ -1,1 +1,0 @@
-See [send](/docs/admin-basicmessage/0.1/README.md#send).

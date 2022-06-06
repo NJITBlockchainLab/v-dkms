@@ -1,1 +1,0 @@
-See [routes](/docs/admin-routing/0.1/README.md#routes).

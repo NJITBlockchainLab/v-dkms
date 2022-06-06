@@ -1,1 +1,0 @@
-See [presentation-matching-credentials](/docs/admin-holder/0.1/README.md#presentation-matching-credentials).
