@@ -7,14 +7,14 @@ USER root
 ADD https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 ./jq
 RUN chmod +x ./jq
 
-COPY demo2/ngrok-wait.sh ./ngrok-wait.sh
+COPY demo_dot/ngrok-wait.sh ./ngrok-wait.sh
 RUN chmod +x ngrok-wait.sh
 
 ADD acapy_plugin_toolbox acapy_plugin_toolbox
 ADD requirements.txt .
 ADD setup.py .
 ADD README.md .
-ADD demo3/configs ./configs/
+ADD demo_dot/configs ./configs/
 
 RUN chown -R indy:indy .
 USER $user

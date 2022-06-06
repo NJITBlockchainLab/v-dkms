@@ -7,7 +7,7 @@ services:
     image: acapy-toolbox-ngrok
     build:
       context: ../
-      dockerfile: ./demo3/Dockerfile.demo
+      dockerfile: ./demo_dot/Dockerfile.demo
     environment:
       NGROK_NAME: ngrok-alice
     ports:

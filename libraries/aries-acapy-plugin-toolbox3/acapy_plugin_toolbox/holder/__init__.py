@@ -1,1 +1,0 @@
-"""Holder admin protocol."""
