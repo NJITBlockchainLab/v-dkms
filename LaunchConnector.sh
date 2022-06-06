@@ -1,5 +1,5 @@
 #!/bin/bash
-cd libraries/aries-toolbox
+cd libraries/connector
 npm i
 npm run dev
 
