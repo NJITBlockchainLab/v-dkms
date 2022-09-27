@@ -1,12 +1,12 @@
-label: ca
-invite-label: CA (Admin)
-wallet-name: ca
+label: bob
+invite-label: Bob (Admin)
+wallet-name: bob
 endpoint:
-  - http://localhost:3000
-  - ws://localhost:3000
+  - http://localhost:3008
+  - ws://localhost:3008
 inbound-transport:
-  - [acapy_plugin_toolbox.http_ws, 0.0.0.0, 3000]
-admin: [0.0.0.0, 3001]
+  - [acapy_plugin_toolbox.http_ws, 0.0.0.0, 3008]
+admin: [0.0.0.0, 3009]
 
 # Load toolbox plugin
 plugin:

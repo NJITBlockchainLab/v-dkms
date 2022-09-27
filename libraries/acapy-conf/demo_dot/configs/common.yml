@@ -8,7 +8,7 @@ outbound-transport: http
 # Ledger
 # Use Sovrin Staging Net. Become an endorser at https://selfserve.sovrin.org.
 # genesis-url: https://raw.githubusercontent.com/sovrin-foundation/sovrin/master/sovrin/pool_transactions_sandbox_genesis
-genesis-url: http://192.168.189.168:9000/genesis
+genesis-url: http://192.168.189.198:9000/genesis
 
 # Admin
 admin-insecure-mode: true
