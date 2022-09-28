@@ -9,7 +9,7 @@ services:
       context: ../
       dockerfile: ./demo_dot/Dockerfile.demo
     environment:
-      NGROK_NAME: ngrok-sp
+      NGROK_NAME: ngrok-bob
     ports:
       - "3009:3009"
     command: aca-py start --arg-file ./configs/bob.yml
